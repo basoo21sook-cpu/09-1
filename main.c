@@ -1,25 +1,35 @@
 #include <stdio.h>
-#include <stdlib.h>
+#define SIZE 4   // 배열의 크기 정의
 
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
-#define SIZE 5
+
+void square_array(int a[], int size);
+void print_array(int a[], int size);
 
 int main(void)
 {
-    int i;
-    int a[SIZE] = {1, 2, 3, 4, 5};
-    int b[SIZE] = {1, 2, 3, 4, 5};
-    int flag_same = 1;   // 같다고 가정하고 시작
+    int list[SIZE] = {1, 2, 3, 4};
 
-    for (i = 0; i < SIZE; i++)
-    {
-        if (a[i] != b[i])
-        {
-            flag_same = 0;   // 다르면 플래그 변경
-            printf(" %i-th element is diff.\n", i);
-        }
-    }
-	printf("are a and b the same? %i\n",flag_same);
+    print_array(list, SIZE);   
+    square_array(list, SIZE);
+    print_array(list, SIZE);  
+
     return 0;
+}
+
+// 각 원소를 제곱하는 함수
+void square_array(int a[], int size)
+{
+    int i;
+    for (i = 0; i < size; i++)
+        a[i] = a[i] * a[i];  // 원본 배열 값이 실제로 변경됨
+}
+
+// 배열 출력 함수
+void print_array(int a[], int size)
+{
+    int i;
+    for (i = 0; i < size; i++)
+        printf("%3d", a[i]);
+    printf("\n");
 }
 
