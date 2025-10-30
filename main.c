@@ -1,35 +1,57 @@
 #include <stdio.h>
-#define SIZE 4   // 배열의 크기 정의
 
+#define ROWS 3   
+#define COLS 3   
 
-void square_array(int a[], int size);
-void print_array(int a[], int size);
+// 함수 원형 선언
+void addMatrix(int A[ROWS][COLS], int B[ROWS][COLS], int C[ROWS][COLS]);
+void printMatrix(int M[ROWS][COLS]);
 
 int main(void)
 {
-    int list[SIZE] = {1, 2, 3, 4};
+    int A[ROWS][COLS] = {
+        {2, 3, 0},
+        {8, 9, 1},
+        {7, 0, 5}
+    };
 
-    print_array(list, SIZE);   
-    square_array(list, SIZE);
-    print_array(list, SIZE);  
+    int B[ROWS][COLS] = {
+        {1, 0, 0},
+        {0, 1, 0},
+        {0, 0, 1}
+    };
+
+    int C[ROWS][COLS]; 
+
+    addMatrix(A, B, C);  
+    printMatrix(C);      
 
     return 0;
 }
 
-// 각 원소를 제곱하는 함수
-void square_array(int a[], int size)
+void addMatrix(int A[ROWS][COLS], int B[ROWS][COLS], int C[ROWS][COLS])
 {
-    int i;
-    for (i = 0; i < size; i++)
-        a[i] = a[i] * a[i];  // 원본 배열 값이 실제로 변경됨
+    int i, j;
+    for (i = 0; i < ROWS; i++)
+    {
+        for (j = 0; j < COLS; j++)
+        {
+            C[i][j] = A[i][j] + B[i][j]; 
+        }
+    }
 }
 
-// 배열 출력 함수
-void print_array(int a[], int size)
+
+void printMatrix(int M[ROWS][COLS])
 {
-    int i;
-    for (i = 0; i < size; i++)
-        printf("%3d", a[i]);
-    printf("\n");
+    int i, j;
+    for (i = 0; i < ROWS; i++)
+    {
+        for (j = 0; j < COLS; j++)
+        {
+            printf("%3d ", M[i][j]);
+        }
+        printf("\n");
+    }
 }
 
